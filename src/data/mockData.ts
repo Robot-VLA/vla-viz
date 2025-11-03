@@ -53,15 +53,23 @@ export const mockVisualizationData: VisualizationData = {
   ]
 };
 
-// Function to simulate periodic data updates (optional)
-export const generateMockData = (): VisualizationData => {
+// Function to simulate periodic data updates
+export const generateMockData = (index: number = 0): VisualizationData => {
+  const colors = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899'];
+  const color = colors[index % colors.length];
+
   return {
     ...mockVisualizationData,
     timestamp: Date.now(),
     metadata: {
       ...mockVisualizationData.metadata,
-      step: Math.floor(Math.random() * 500),
-      episode: Math.floor(Math.random() * 100)
+      step: index,
+      episode: Math.floor(index / 50)
+    },
+    observation_images: {
+      'camera_front': createPlaceholderImage(color),
+      'camera_wrist': createPlaceholderImage(colors[(index + 1) % colors.length]),
+      'camera_top': createPlaceholderImage(colors[(index + 2) % colors.length])
     }
   };
 };

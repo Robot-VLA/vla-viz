@@ -27,4 +27,51 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-slate-600;
   }
+
+  /* Timeline slider styling */
+  .timeline-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #3b82f6;
+    cursor: pointer;
+    border: 2px solid #1e293b;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    transition: all 0.15s ease;
+  }
+
+  .timeline-slider::-webkit-slider-thumb:hover {
+    background: #60a5fa;
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.3);
+  }
+
+  .timeline-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #3b82f6;
+    cursor: pointer;
+    border: 2px solid #1e293b;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    transition: all 0.15s ease;
+  }
+
+  .timeline-slider::-moz-range-thumb:hover {
+    background: #60a5fa;
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.3);
+  }
+
+  .timeline-slider:disabled::-webkit-slider-thumb {
+    background: #475569;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .timeline-slider:disabled::-moz-range-thumb {
+    background: #475569;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
 }
