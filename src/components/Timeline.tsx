@@ -26,6 +26,10 @@ export function Timeline({
 
   const progress = (historySize / maxHistorySize) * 100;
 
+  // When live, show slider at the current buffer position
+  // When paused, show at the selected position
+  const displayIndex = isLive ? Math.max(0, historySize - 1) : currentIndex;
+
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-sm border-t border-slate-800/50 shadow-lg z-20">
       <div className="max-w-[1800px] mx-auto px-4 py-3">
@@ -55,7 +59,7 @@ export function Timeline({
           {/* Timeline Slider */}
           <div className="flex-1 flex items-center gap-3">
             <span className="text-xs text-slate-500 font-mono min-w-[80px]">
-              {currentIndex + 1} / {totalFrames}
+              {displayIndex + 1} / {totalFrames}
             </span>
             <div className="flex-1 relative">
               {/* Progress bar showing buffer fill */}
@@ -69,8 +73,8 @@ export function Timeline({
               <input
                 type="range"
                 min="0"
-                max={Math.max(0, totalFrames - 1)}
-                value={currentIndex}
+                max={Math.max(0, maxHistorySize - 1)}
+                value={displayIndex}
                 onChange={handleSliderChange}
                 disabled={totalFrames === 0}
                 className="timeline-slider w-full h-2 bg-transparent appearance-none cursor-pointer relative z-10"
